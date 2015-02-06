@@ -1,0 +1,22 @@
+<canvas id="canvas" width="700" height="700"></canvas>
+<script src = "chull.js"></script>
+<script>
+var k = Array.apply(null, new Array(10000)).map(rPoint);
+
+console.time('convex hull')
+var con = convexHull(k)
+console.timeEnd('convex hull')
+
+
+console.time('rotating calipers')
+var mbr = min_enclosing_rect(con)
+console.timeEnd('rotating calipers')
+
+
+drawPoly(mbr)
+ctx.fillStyle = rColor()
+fillPoly(con)
+ctx.fillStyle = rColor()
+drawPoints(k)
+
+</script>
